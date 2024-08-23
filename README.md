@@ -7,7 +7,7 @@ All implementation code is written in the Julia language (version 1.10.2).
 Code can be executed in the Julia REPL, after activating the environment.
 To activate the environment: 
 
-1. in the Julia REPL, type "[" and enter to launch the package manager. 
+1. in the Julia REPL, type "]" and enter to launch the package manager. 
 2. Run "activate juliaNeutralAtom"
 3. hit delete to return to the Julia repl
 
@@ -27,3 +27,10 @@ You can run the code to plot images and compute evaluation metrics by running th
 
 ## Real Hardware Runs
 Real hardware runs are done on the Aquila computer from QuEra, which we accessed using Amazon Braket. The code used to run this is in `ReConAquila.ipynb`. The parameters used for each run are saved in the folder `pythonInput`
+For convenience, you can run the shell script train.sh, which will execute the above for all classes in a given dataset with the given Rabi and detuning pulses.
+
+## Requirements
+Code written in Julia v1.10.2. All package data is stored within the juliaNeutralAtom folder.
+
+## Copyright
+Copyright © 2024 Positive Technology Lab. All rights reserved. For permissions, contact ptl@rice.edu.
