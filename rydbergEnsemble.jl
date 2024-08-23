@@ -33,7 +33,7 @@ using Flux.Losses: logitbinarycrossentropy
 using Dates: now
 using JLD2
 
-include("rydbergLearn" * local_or_globalLocal * ".jl")
+include("utils/rydbergLearn" * local_or_globalLocal * ".jl")
 
 hyparams = rydQGANhyperparameters(;
     numAtoms = 4,
@@ -96,7 +96,7 @@ println("Number of batches:", size(batches))
 # println(size(batches[1]))
 
 # define pulse shapes and parametersizations
-include("pulseLibrary.jl")
+include("utils/pulseLibrary.jl")
 pulseList = [linearPulse, expPulse, sinPulse, reverseLinearPulse, trianglePulse, expDecayPulse, gaussianPulse, trapezoidPulse]
 # pulseMask = BitVector(sum( map(x -> string.(pulseList) .== x, pulseNames) ) ) #selected from commandline
 # pulseList = pulseList[pulseMask]
@@ -184,5 +184,3 @@ digits_plot = plot(imagePlots... )
 display(digits_plot)
 
 png(digits_plot, trialName * "_images/" * rabiPulseName * detunePulseName * string(now()))
-
-
