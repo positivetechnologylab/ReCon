@@ -105,7 +105,7 @@ function genIndivImages(optParams, optPositions, trialPulses, digitPCA, maxPCval
     return indiv_PCS
 end
 
-function genImagesFromPC(PCs, digitPCA; plotFlag = false)
+function genImagesFromPC(PCs, digitPCA; plotFlag = false, plotTitle="")
     numSamplesPerLearner = 500
 
     outImages = mapslices(x -> MultivariateStats.reconstruct(digitPCA, x) , PCs, dims=(1))
@@ -127,8 +127,8 @@ function genImagesFromPC(PCs, digitPCA; plotFlag = false)
             # display(imagePlots[i])
         end
     
-        digits_plot = Plots.plot(imagePlots... )
-    
+        digits_plot = Plots.plot(imagePlots... , plot_title=plotTitle)
+
         display(digits_plot)
         
     end
@@ -399,7 +399,7 @@ function single_ensemble_results(digitClass)
 
     ensemblePCS = mean(generatedPCs[chosenIndices, :, :], dims=1)[1,:,:]
 
-    ensembleImages = genImagesFromPC(ensemblePCS, digitPCA; plotFlag=true)
+    ensembleImages = genImagesFromPC(ensemblePCS, digitPCA; plotFlag=true, plotTitle="Ideal Simulation")
 
     ideal_testing_FID = fid_score(ensembleImages, Xtest)
 
@@ -433,7 +433,7 @@ function single_ensemble_results(digitClass)
 
     flattened_digits_plot = Plots.plot(flattened_imagesPlots... )
 
-    display(flattened_digits_plot)
+    # display(flattened_digits_plot)
 
     # noisy inference
     if dataIsSaved
@@ -452,7 +452,7 @@ function single_ensemble_results(digitClass)
 
     ensemblePCS = mean(generatedPCs[chosenIndices, :, :], dims=1)[1,:,:]
 
-    ensembleImages = genImagesFromPC(ensemblePCS, digitPCA; plotFlag=true)
+    ensembleImages = genImagesFromPC(ensemblePCS, digitPCA; plotFlag=true, plotTitle="Error Prone Simulation")
 
     noisy_testing_FID = fid_score(ensembleImages, Xtest)
 
@@ -486,7 +486,7 @@ function single_ensemble_results(digitClass)
 
     flattened_digits_plot = Plots.plot(flattened_imagesPlots... )
 
-    display(flattened_digits_plot)
+    # display(flattened_digits_plot)
 
     return ideal_testing_FID, noisy_testing_FID, ideal_learners, noisy_learners, avg_ideal_var, avg_noisy_var
 end
