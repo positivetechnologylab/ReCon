@@ -11,7 +11,7 @@ You can run the code to train a GAN for a single class of a data set by running 
 julia --project=./juliaNeutralAtom rydbergEnsemble.jl $DATASET $CLASSNUM $RABIPULSE $DETUNEPULSE
 ```
 
-where `$DATASET` is the dataset to be used (normally "MNIST" or "FashionMNIST"), `$CLASSNUM` is an integer [0, 9] representing the digit/clothing class, `$RABIPULSE` is the pulse function/shape to be used for the Rabi frequency, and `$DETUNE` is the pulse function/shape to be used for the detuning. The available pulse functions are specified in pulseLibrary.jl. Note that there are hardware constraints on which pulses can be used which are explained in the paper.
+where `$DATASET` is the dataset to be used (normally MNIST or FashionMNIST), `$CLASSNUM` is an integer [0, 9] representing the digit/clothing class, `$RABIPULSE` is the pulse function/shape to be used for the Rabi frequency, and `$DETUNE` is the pulse function/shape to be used for the detuning. The available pulse functions are specified in `utils/pulseLibrary.jl`. Note that there are hardware constraints on which pulses can be used; these are explained in the paper.
 
 For convenience, you can run the shell script train.sh, which will execute the above for all classes in a given dataset.
 
